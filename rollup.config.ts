@@ -5,13 +5,18 @@ import { externals } from "rollup-plugin-node-externals";
 export default defineConfig({
   input: "./src/index.ts",
   treeshake: false,
-  /*output: [
+  output: [
     {
-      dir: "lib/cjs",
+      dir: "dist/cjs",
       format: "commonjs",
       sourcemap: true,
       exports: "named",
-    }
-  ],*/
+    },
+    {
+      dir: "dist/esm",
+      format: "esm",
+      sourcemap: true,
+    },
+  ],
   plugins: [externals(), typescript()],
 });

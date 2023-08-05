@@ -1,9 +1,8 @@
 {
   "name": "sample-react-plugin",
-  "version": "0.1.0",
-  "main": "./dist/lib/index.js",
-  "module": "./dist/lib/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
   "sideEffects": false,
   "files": [
     "dist",
@@ -53,7 +52,7 @@
   "scripts": {
     "start": "FAST_REFRESH=false react-scripts start",
     "build": "npm run build:lib && npm run build:types",
-    "build:types": "tsc --outDir ./dist/lib --declaration --emitDeclarationOnly",
+    "build:types": "tsc --outDir ./dist/types --declaration --emitDeclarationOnly",
     "build:lib": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
