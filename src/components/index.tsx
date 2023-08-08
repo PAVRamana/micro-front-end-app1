@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 
-function App(): JSX.Element {
+interface MyProps {
+  props: string;
+}
+
+function App({ props }: MyProps): JSX.Element {
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
@@ -36,7 +40,9 @@ function App(): JSX.Element {
   });
   return (
     <>
-      <div style={{ padding: "20px" }}>Hello {userName}</div>
+      <div style={{ padding: "20px" }}>
+        {props} {userName}
+      </div>
     </>
   );
 }

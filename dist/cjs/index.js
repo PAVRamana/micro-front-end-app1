@@ -224,7 +224,7 @@ function __classPrivateFieldSet(receiver, privateMap, value) {
     return value;
 }
 
-function App() {
+function App({ props }) {
     const [userName, setUserName] = react.useState("");
     react.useEffect(() => {
         const pluginHelper = window.PluginHelper;
@@ -254,7 +254,7 @@ function App() {
                 .then((json) => console.log(json));
         }
     });
-    return (jsxRuntime.jsx(jsxRuntime.Fragment, { children: jsxRuntime.jsxs("div", Object.assign({ style: { padding: "20px" } }, { children: ["Hello ", userName] })) }));
+    return (jsxRuntime.jsx(jsxRuntime.Fragment, { children: jsxRuntime.jsxs("div", Object.assign({ style: { padding: "20px" } }, { children: [props, " ", userName] })) }));
 }
 
 exports.default = App;

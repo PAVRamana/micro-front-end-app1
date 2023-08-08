@@ -220,7 +220,7 @@ function __classPrivateFieldSet(receiver, privateMap, value) {
     return value;
 }
 
-function App() {
+function App({ props }) {
     const [userName, setUserName] = useState("");
     useEffect(() => {
         const pluginHelper = window.PluginHelper;
@@ -250,7 +250,7 @@ function App() {
                 .then((json) => console.log(json));
         }
     });
-    return (jsx(Fragment, { children: jsxs("div", Object.assign({ style: { padding: "20px" } }, { children: ["Hello ", userName] })) }));
+    return (jsx(Fragment, { children: jsxs("div", Object.assign({ style: { padding: "20px" } }, { children: [props, " ", userName] })) }));
 }
 
 export { App as default };
