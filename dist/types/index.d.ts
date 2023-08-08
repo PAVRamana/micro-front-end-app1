@@ -1,2 +1,2 @@
-import CustomComponent from "./components/CustomComponent";
-export default CustomComponent;
+import MFEComponent1 from "./components";
+export default MFEComponent1;
