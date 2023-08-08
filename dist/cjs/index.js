@@ -227,27 +227,34 @@ function __classPrivateFieldSet(receiver, privateMap, value) {
 function App() {
     const [userName, setUserName] = react.useState("");
     react.useEffect(() => {
-        const data = {
-            query: window.PluginHelper.getCurrentUsername(),
-            limit: "5",
-            extraParams: {
-                context: "LcmPopulationManager",
-                suggestId: "suggest_manager",
-            },
-        };
-        fetch(`${window.location.origin}/identityiq/ui/rest/requestAccess/identities/suggest/object/sailpoint.object.Identity`, {
-            method: "POST",
-            headers: { Authorization: "Basic " + btoa("spadmin:admin") },
-            body: JSON.stringify(data),
-        })
-            .then((response) => __awaiter(this, void 0, void 0, function* () {
-            var _a;
-            const resp = yield response.json();
-            setUserName((_a = resp === null || resp === void 0 ? void 0 : resp.objects[0]) === null || _a === void 0 ? void 0 : _a.displayName);
-        }))
-            .then((json) => console.log(json));
+        const pluginHelper = window.PluginHelper;
+        if (pluginHelper) {
+            const currentUserName = pluginHelper && pluginHelper.getCurrentUsername();
+            if (!currentUserName) {
+                return;
+            }
+            const data = {
+                query: window.PluginHelper.getCurrentUsername(),
+                limit: "5",
+                extraParams: {
+                    context: "LcmPopulationManager",
+                    suggestId: "suggest_manager",
+                },
+            };
+            fetch(`${window.location.origin}/identityiq/ui/rest/requestAccess/identities/suggest/object/sailpoint.object.Identity`, {
+                method: "POST",
+                headers: { Authorization: "Basic " + btoa("spadmin:admin") },
+                body: JSON.stringify(data),
+            })
+                .then((response) => __awaiter(this, void 0, void 0, function* () {
+                var _a;
+                const resp = yield response.json();
+                setUserName((_a = resp === null || resp === void 0 ? void 0 : resp.objects[0]) === null || _a === void 0 ? void 0 : _a.displayName);
+            }))
+                .then((json) => console.log(json));
+        }
     });
-    return (jsxRuntime.jsx(jsxRuntime.Fragment, { children: jsxRuntime.jsx("div", Object.assign({ id: "container" }, { children: jsxRuntime.jsxs("div", Object.assign({ id: "content" }, { children: ["Hello ", userName] })) })) }));
+    return (jsxRuntime.jsx(jsxRuntime.Fragment, { children: jsxRuntime.jsxs("div", Object.assign({ style: { padding: "20px" } }, { children: ["Hello ", userName] })) }));
 }
 
 exports.default = App;
